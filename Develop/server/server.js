@@ -1,7 +1,6 @@
 const express = require('express');
 const path = require('path');
 const db = require('./config/connection');
-const cors = require('cors');
 const routes = require('./routes');
 const { ApolloServer } = require('apollo-server-express');
 
@@ -11,11 +10,6 @@ const { authMiddleware } = require('./utils/auth');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
-
-const corsOptions = {
-  origin: 'http://localhost:3001',
-  credentials: true
-}
 
 const startServer = async () => {
   // create a new Apollo server and pass in our schema data
@@ -35,12 +29,11 @@ server.applyMiddleware({ app });
 console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
 };
 
-// // Initialize the Apollo server
+// Initialize the Apollo server
 startServer();
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-// app.use(cors())
 
 // if we're in production, serve client/build as static assets
 if (process.env.NODE_ENV === 'production') {
