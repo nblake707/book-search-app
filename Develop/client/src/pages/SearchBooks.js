@@ -3,7 +3,7 @@ import { Jumbotron, Container, Col, Form, Button, Card, CardColumns } from 'reac
 
 import Auth from '../utils/auth';
 import { saveBook, searchGoogleBooks } from '../utils/API';
-import { saveBookIds, getSavedBookIds } from '../utils/localStorage';
+import { saveBookIds, getSavedBookIds } from '../utils/localStorage'; // may not need this
 
 const SearchBooks = () => {
   // create state for holding returned google api data
@@ -52,6 +52,8 @@ const SearchBooks = () => {
     }
   };
 
+  // need to update this function to use the SAVE_BOOK mutation
+
   // create function to handle saving a book to our database
   const handleSaveBook = async (bookId) => {
     // find the book in `searchedBooks` state by the matching id
@@ -65,6 +67,7 @@ const SearchBooks = () => {
     }
 
     try {
+      // need to use apollo mutation instead 
       const response = await saveBook(bookToSave, token);
 
       if (!response.ok) {
