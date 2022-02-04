@@ -42,6 +42,7 @@ if (process.env.NODE_ENV === 'production') {
 
 // app.use(routes);
 
+// wildcard GET route. Get requests made to locations without an explicit route responds with prod ready react-frontend
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/build/index.html'));
 });
